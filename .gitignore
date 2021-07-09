@@ -1,3 +1,8 @@
+# Additional Files
+.env
+.DS_store
+src/
+
 # Logs
 logs
 *.log
