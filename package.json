@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,7 +19,9 @@
   "homepage": "https://github.com/maayazed/employee-tracker#readme",
   "dependencies": {
     "console.table": "^0.10.0",
+    "dotenv": "^10.0.0",
     "inquirer": "^8.1.1",
     "mysql": "^2.18.1"
-  }
+  },
+  "devDependencies": {}
 }
