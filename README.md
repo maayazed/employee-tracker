@@ -43,7 +43,8 @@
 
 <div>
 <h4>Instructions: </h4>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Download from repository. Node is required to initialize the index.js file.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Download from repository. Node is required to initialize the index.js file. MySQL is required to seed the database. 
+⚠️ Users are required to provide their MySQL password and a user for the database following the .env.EXAMPLE file provided within this repository.
 </div>
 
 <hr>
@@ -54,7 +55,7 @@
 
 <div>
 <h4>Guide: </h4> 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;From the command line install the package.json dependencies then run index.js with node. The command-line prompts the user for inputs and selections from <a href='https://www.npmjs.com/package/inquirer'><code>inquirer</code></a> to customize the file myTeam.html generation.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;From the command line install the package.json dependencies. In MySQL Workbench first run seed.sql then run schema.sql. Both .sql files are found in the db folder provided within this repository. Run index.js with node to start the application after the dependencies have been installed and the database has been seeded. The command-line prompts the user for selections and inputs from <a href='https://www.npmjs.com/package/inquirer'><code>inquirer</code></a> to enable user access and change to the database.
 </div>
 
 <hr>
@@ -64,15 +65,15 @@
 </div>
 
 <div>
-<h4> Seeding: Command Line</h4>
-<pre><code>npm i</code></pre>
-<pre><code>node index.js</code></pre>
+<h4> Seeding: MySQL Workbench</h4>
+<pre><code>Select File then Open SQL Script</code></pre>
+<pre><code>Navigate to this repository folder labeled db then open both schema and seed .sql files. Run schema.sql first</code></pre>
 </div>
 
 <div>
 <h4> Execution: Command Line</h4>
-<p>Navigate to the folder labeled tests. Test execution is required to have the current working directory set as <code>./team-profile-generator/tests</code>.</p>
-<pre><code>npm test</code></pre>
+<pre><code>npm i</code></pre>
+<pre><code>npm start</code></pre>
 </div>
 
 <hr>
