@@ -47,7 +47,7 @@
     
 <br>
     
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⚠️ Users are required to provide their MySQL password and a user for the database following the .env.EXAMPLE file provided within this repository.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⚠️ Users are required to provide their MySQL password and a user for the database following the .env.EXAMPLE file provided within this &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;repository.
 </div>
 
 <hr>
