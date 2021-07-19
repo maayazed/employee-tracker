@@ -4,7 +4,7 @@
 
 ### Badges: [![badge src!](https://img.shields.io/badge/license-MIT-blue)](https://opensource.org/licenses) ![badge src!](https://img.shields.io/badge/Language-JavaScript-yellow)
 
-
+![2021-07-19-16-13-59](https://user-images.githubusercontent.com/79816212/126228889-8c0dc692-5209-4c20-be2a-422b3b8e18c4.gif)
 
 <div align='center'>
 <strong>Table of Contents</strong>  
@@ -14,7 +14,7 @@
     <p><a href='#user'>User Guidelines</a></p>
     <p><a href='#license'>Licensing</a></p>
     <p><a href='#contribute'>Contributors</a></p>
-    <p><a href='#test'>Test and Execution</a></p>
+    <p><a href='#test'>Seeding and Execution</a></p>
     <p><a href='#contact'>Contact</a></p>
 
 <hr>
@@ -25,7 +25,10 @@
 </div>
 
 <div>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Team Profile Generator is a javascript application that dynamically generates a customized team profile utilizing display with html and css <a href='https://getbootstrap.com/'><code>bootstrap</code></a> elements. Your team will include a manager, engineer, and intern.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Employee Content Management System is a javascript application that enables users access and changes to a company employee database. The database ran through MySQL houses three table objects: department, role, and employee.
+    
+<img src='https://umn.bootcampcontent.com/University-of-Minnesota-Boot-Camp/uofm-stp-virt-fsf-pt-04-2021-u-c/-/raw/master/12-MySQL/02-Homework/Assets/schema.png'>
+    
 </div>
 
 <br>
@@ -77,17 +80,17 @@
 <hr>
 
 <div align='center'>
-    <h3><a id='test'>Test and Execution</a></h3>
+    <h3><a id='test'>Seeding and Execution</a></h3>
 </div>
 
 <div>
-<h4> Execution: Command Line</h4>
+<h4> Seeding: Command Line</h4>
 <pre><code>npm i</code></pre>
 <pre><code>node index.js</code></pre>
 </div>
 
 <div>
-<h4> Testing: Command Line</h4>
+<h4> Execution: Command Line</h4>
 <p>Navigate to the folder labeled tests. Test execution is required to have the current working directory set as <code>./team-profile-generator/tests</code>.</p>
 <pre><code>npm test</code></pre>
 </div>
