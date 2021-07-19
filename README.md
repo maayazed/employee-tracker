@@ -26,14 +26,12 @@
 
 <div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Employee Content Management System is a javascript application that enables users access and changes to a company employee database. The database ran through MySQL houses three table objects: department, role, and employee.
-    
-<img src='https://umn.bootcampcontent.com/University-of-Minnesota-Boot-Camp/uofm-stp-virt-fsf-pt-04-2021-u-c/-/raw/master/12-MySQL/02-Homework/Assets/schema.png'>
-    
+        
 </div>
 
 <br>
 
-![Screenshot 2021-06-30 173203](https://user-images.githubusercontent.com/79816212/124039761-32457a00-d9c9-11eb-9295-977f0862fc17.png)
+<img width="736" alt="schema" src="https://user-images.githubusercontent.com/79816212/126230008-4ddf44e1-1506-4449-abaf-232607406a72.png">
 
 <hr>
 
