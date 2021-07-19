@@ -58,7 +58,7 @@
 
 <div>
 <h4>Guide: </h4> 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;From the command line install the package.json dependencies. In MySQL Workbench first run seed.sql then run schema.sql. Both .sql files are found in the db folder provided within this repository. 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;From the command line install the package.json dependencies. In MySQL Workbench first, run seed.sql then run schema.sql. Both .sql files are found in the db folder provided within this repository. 
     
 <br>
     
