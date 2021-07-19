@@ -493,6 +493,31 @@ connection.connect((err) => {
     if (err) {
         throw Error(err);
     } 
+    const text1 = `
+    _                            
+   |_ ._ _  ._  |  _      _   _  
+   |_ | | | |_) | (_) \/ (/_ (/_ 
+            |         /          
+    `;
+    const text2 = `
+    _                       
+   /   _  ._ _|_  _  ._ _|_ 
+   \_ (_) | | |_ (/_ | | |_ 
+                            
+    `;
+    const text3 = `
+                                           
+    |\/|  _. ._   _.  _   _  ._ _   _  ._ _|_ 
+    |  | (_| | | (_| (_| (/_ | | | (/_ | | |_ 
+                      _|                      
+    `;
+    const text4 = `
+    __                     
+   (_      _ _|_  _  ._ _  
+   __) \/ _>  |_ (/_ | | | 
+       /                   
+    `;
     console.log(`connected as id ${connection.threadId}`);
+    console.log(text1 + text2 + text3 + text4);
     start();
 });
