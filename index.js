@@ -47,7 +47,7 @@ const start = () => {
 const viewAll_CMS = () => {
     console.log(`Printing departments record. . .`)
     // seedsMain prints out ALL of the departments with an worker summary for each
-    const seedsMain = `SELECT department.id, department.name, role.title, employee.first_name, employee.last_name, role.salary FROM department
+    const seedsMain = `SELECT department.name, role.title, employee.first_name, employee.last_name, role.salary FROM department
     INNER JOIN role
     ON department.id = role.department_id
     INNER JOIN employee
@@ -62,7 +62,7 @@ const viewAll_CMS = () => {
 };
 
 const view_CMS = () => {
-    (`Accessing department review. . .`);
+    console.log(`Accessing department review. . .`);
     // calculate id from select inquirer here
     const department = `SELECT * FROM department`;
     connection.query(department, (err, res) => {
@@ -86,7 +86,7 @@ const view_CMS = () => {
             const Id = res.map((data) => data.id);
             console.log(`Department ${Id}:`);
             // seeds prints out ONE of the departments with an worker summary for each
-            const seeds = `SELECT department.id, department.name, role.title, employee.first_name, employee.last_name, role.salary FROM department
+            const seeds = `SELECT role.title, employee.first_name, employee.last_name, role.salary FROM department
             INNER JOIN role
             ON department.id = ${Id} AND role.department_id = ${Id}
             INNER JOIN employee
@@ -108,7 +108,7 @@ const create_CMS = () => {
     inquirer.prompt([
         {
             name: 'add_CMS',
-            message: 'Enter the new department name:',
+            message: 'Enter the new department name.',
             type: 'input'
         }
     ])
@@ -230,7 +230,263 @@ const CMS_role = (data) => {
 };
 
 const update_CMS = () => {
+    console.log(`Commencing department inspections. . .`);
+    // Get all departments, select by id to access workers, select by role/ worker
+    const department = `SELECT * FROM department`;
+    connection.query(department, (err, res) => {
+        if (err) {
+            throw new Error(err);
+        }
+        const choices = res.map((data) => data);
+        inquirer.prompt([
+            {
+                name: 'department',
+                message: 'Chose a department to inspect.',
+                type: 'list',
+                choices,
+            }
+        ]).then((data) => {
+            const { department } = data;
+            console.log(`Inspecting ${department}. . .`);
+            const findId = `SELECT department.id FROM department WHERE department.name = ${JSON.stringify(department)}`;
+        connection.query(findId, (err, res) => {
+            if (err) {
+                throw new Error(err);
+            }
+            const Id = res.map((data) => data.id);
+            console.log(`Department ${Id}:`);
+            const seeds = `SELECT role.title, employee.first_name, employee.last_name, role.salary FROM department
+            INNER JOIN role
+            ON department.id = ${Id} AND role.department_id = ${Id}
+            INNER JOIN employee
+            ON role.id = employee.role_id`;
+            connection.query(seeds, (err, res) => {
+                if (err) {
+                    throw new Error(err);
+                }
+                console.table(res);
+                inquirer.prompt([
+                    {
+                        name: 'select',
+                        message: 'Chose something to evaluate.',
+                        type: 'list',
+                        choices: [
+                            'Evaluate employees',
+                            'Evaluate roles',
+                            'Return'
+                        ]
+                    }
+                ]).then((next) => {
+                    switch (next.select) {
+                    case 'Evaluate employees':
+                        CMS_employee(data);
+                        break;
+                    case 'Evaluate roles':
+                        CMS_title(data);
+                        break;
+                    default:
+                        console.log(next);
+                        break;
+                    case 'Return':
+                        start();
+                        break;
+                    };
+                    });
+                });
+            });
+        });
+    });
+};
 
+const CMS_employee = (data) => {
+    const { department } = data;
+    console.log(`Printing employee record from ${department}. . .`);
+    const findId = `SELECT department.id FROM department WHERE department.name = ${JSON.stringify(department)}`;
+    connection.query(findId, (err, res) => {
+        if (err) {
+            throw new Error(err);
+        }
+        const Id = res.map((data) => data.id);
+        const seeds = `SELECT employee.first_name FROM department
+        INNER JOIN role
+        ON department.id = ${Id} AND role.department_id = ${Id}
+        INNER JOIN employee
+        ON role.id = employee.role_id`;
+        connection.query(seeds, (err, res) => {
+            if (err) {
+                throw new Error(err);
+            }
+            const choices = res.map((data) => data.first_name);
+            inquirer.prompt([
+                {
+                    name: 'employee',
+                    message: 'Chose an employee to evaluate.',
+                    type: 'list',
+                    choices,
+                }
+            ]).then((data) => {
+                const { employee } = data;
+                const findTitle = `SELECT role.title, employee.first_name, employee.last_name FROM employee
+                INNER join role
+                ON employee.first_name = '${employee}' AND
+                role.id = employee.role_id`
+                connection.query(findTitle, (err, res) => {
+                    if (err) {
+                        throw new Error(err);
+                    }
+                    console.table(res);
+                    const title = res.map((data) => data.title);
+                    const name = res.map((data) => `${data.first_name} ${data.last_name}`);
+                    inquirer.prompt([
+                        {
+                            name: 'first_name',
+                            message: `New ${title}'s first name?`,
+                            type: 'input',
+                        },
+                        {
+                            name: 'last_name',
+                            message: `New ${title}'s last name?`,
+                            type: 'input',
+                        },
+                    ]).then((data) => {
+                        const { first_name, last_name } = data;
+                        const capData = [
+                            first_name.replace(/^\w/, (c) => c.toUpperCase()),
+                            last_name.replace(/^\w/, (c) => c.toUpperCase()),
+                        ]
+                        console.log('Updating employee record. . .');
+                        console.log(`Removed ${title} ${name}. Added ${title} ${capData[0]} ${capData[1]}.`);
+                        update_employee(data, res);
+                    });
+                });
+            });
+        });
+    });
+};
+
+const CMS_title = (data) => {
+    const { department } = data;
+    console.log(`Printing job record from ${department}. . .`);
+    const findId = `SELECT department.id FROM department WHERE department.name = ${JSON.stringify(department)}`;
+    connection.query(findId, (err, res) => {
+        if (err) {
+            throw new Error(err);
+        }
+        const Id = res.map((data) => data.id);
+        const seeds = `SELECT role.title FROM department
+        INNER JOIN role
+        ON department.id = ${Id} AND role.department_id = ${Id}
+        INNER JOIN employee
+        ON role.id = employee.role_id`;
+        connection.query(seeds, (err, res) => {
+            if (err) {
+                throw new Error(err);
+            }
+            const choices = res.map((data) => data.title);
+            inquirer.prompt([
+                {
+                    name: 'role',
+                    message: 'Chose a job to evaluate',
+                    type: 'list',
+                    choices,
+                }
+            ]).then((data) => {
+                const { role } = data;
+                const findTitle = `SELECT role.id , role.title, role.salary FROM employee
+                INNER join role
+                ON role.title = '${role}' AND
+                role.id = employee.role_id`
+                connection.query(findTitle, (err, res) => {
+                    if (err) {
+                        throw new Error(err);
+                    }
+                    console.table(res);
+                    const title = res.map((data) => data.title);
+                    inquirer.prompt([
+                        {   
+                            name: 'new_title',
+                            message: `What is ${title} being promoted to?`,
+                            type: 'input',
+                        },
+                        {
+                            name: 'salary',
+                            message: 'Promotion salary?',
+                            type: 'input',
+                        },
+                    ]).then((data) => {
+                        const { new_title, salary } = data;
+                        const capData = new_title.replace(/^\w/, (c) => c.toUpperCase());
+                        console.log('Updating job record. . .');
+                        console.log(`${title} was promoted to ${capData}. Paying ${salary}.`);
+                        update_title(data, res);
+                    });
+                });
+            });
+        });
+    });
+};
+
+const update_employee = (data, res) => {
+    const title = res.map((data) => data.title);
+    const { first_name, last_name } = data;
+    const capData = [
+        first_name.replace(/^\w/, (c) => c.toUpperCase()),
+        last_name.replace(/^\w/, (c) => c.toUpperCase()),
+    ]
+    const findRole_id = `SELECT role.id FROM role WHERE role.title = '${title}'`;
+    connection.query(findRole_id, (err, res) => {
+        if (err) {
+            throw new Error(err);
+        }
+        const role_id = res.map((data) => data.id);
+        connection.query(
+            'UPDATE employee SET ? WHERE ?',
+            [
+                {
+                    first_name: capData[0],
+                    last_name: capData[1],
+                },
+                {
+                    role_id: role_id,
+                },
+            ],
+            (err) => {
+                if (err) throw err;
+                console.log('Updated employee record.');
+                start();
+            }
+        );
+    });
+};
+
+const update_title = (data, res) => {
+    const title = res.map((data) => data.title);
+    const { new_title, salary } = data;
+    const capData = new_title.replace(/^\w/, (c) => c.toUpperCase());
+    const findRole_id = `SELECT role.id FROM role WHERE role.title = '${title}'`;
+    connection.query(findRole_id, (err, res) => {
+        if (err) {
+            throw new Error(err);
+        }
+        const role_id = res.map((data) => data.id);
+        connection.query(
+            'UPDATE role SET? WHERE ?',
+            [
+                {
+                    title: capData,
+                    salary: salary,
+                },
+                {
+                    id: role_id,
+                },
+            ],
+            (err) => {
+                if (err) throw err;
+                console.log('Updated job record.');
+                start();
+            }
+        );
+    });
 };
 
 connection.connect((err) => {
