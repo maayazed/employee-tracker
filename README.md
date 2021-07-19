@@ -58,7 +58,11 @@
 
 <div>
 <h4>Guide: </h4> 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;From the command line install the package.json dependencies. In MySQL Workbench first run seed.sql then run schema.sql. Both .sql files are found in the db folder provided within this repository. Run index.js with node to start the application after the dependencies have been installed and the database has been seeded. The command-line prompts the user for selections and inputs from <a href='https://www.npmjs.com/package/inquirer'><code>inquirer</code></a> to enable user access and change to the database.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;From the command line install the package.json dependencies. In MySQL Workbench first run seed.sql then run schema.sql. Both .sql files are found in the db folder provided within this repository. 
+    
+<br>
+    
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Run index.js with node to start the application after the dependencies have been installed and the database has been seeded. The command-line prompts the user for selections and inputs from <a href='https://www.npmjs.com/package/inquirer'><code>inquirer</code></a> to enable user access and change to the database.
 </div>
 
 <hr>
