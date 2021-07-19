@@ -44,6 +44,9 @@
 <div>
 <h4>Instructions: </h4>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Download from repository. Node is required to initialize the index.js file. MySQL is required to seed the database. 
+    
+<br>
+    
 ⚠️ Users are required to provide their MySQL password and a user for the database following the .env.EXAMPLE file provided within this repository.
 </div>
 
