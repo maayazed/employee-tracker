@@ -12,9 +12,9 @@
     <p><a href='#desc'>About</a></p>
     <p><a href='#install'>Installation</a></p>
     <p><a href='#user'>User Guidelines</a></p>
+    <p><a href='#test'>Seeding and Execution</a></p>
     <p><a href='#license'>Licensing</a></p>
     <p><a href='#contribute'>Contributors</a></p>
-    <p><a href='#test'>Seeding and Execution</a></p>
     <p><a href='#contact'>Contact</a></p>
 
 <hr>
