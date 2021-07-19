@@ -60,6 +60,24 @@
 <hr>
 
 <div align='center'>
+    <h3><a id='test'>Seeding and Execution</a></h3>
+</div>
+
+<div>
+<h4> Seeding: Command Line</h4>
+<pre><code>npm i</code></pre>
+<pre><code>node index.js</code></pre>
+</div>
+
+<div>
+<h4> Execution: Command Line</h4>
+<p>Navigate to the folder labeled tests. Test execution is required to have the current working directory set as <code>./team-profile-generator/tests</code>.</p>
+<pre><code>npm test</code></pre>
+</div>
+
+<hr>
+
+<div align='center'>
     <h3><a id='license'>Licensing</a></h3>
 </div>
 
@@ -75,24 +93,6 @@
 
 <div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='https://github.com/maayazed/'><img src='https://img.shields.io/badge/User-maayazed-blue'></a>
-</div>
-
-<hr>
-
-<div align='center'>
-    <h3><a id='test'>Seeding and Execution</a></h3>
-</div>
-
-<div>
-<h4> Seeding: Command Line</h4>
-<pre><code>npm i</code></pre>
-<pre><code>node index.js</code></pre>
-</div>
-
-<div>
-<h4> Execution: Command Line</h4>
-<p>Navigate to the folder labeled tests. Test execution is required to have the current working directory set as <code>./team-profile-generator/tests</code>.</p>
-<pre><code>npm test</code></pre>
 </div>
 
 <hr>
